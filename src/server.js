@@ -4,11 +4,18 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const fileupload = require('express-fileupload')
 const routesAd = require('./routes/routesAd')
-const routesAuth = require('./routes/routesAuth')
+// const routesAuth = require('./routes/routesAuth')
 const routesUser = require('./routes/routesUser')
 
+try {
+    mongoose.connect(
+        process.env.DATABASE
+    )
+    console.log('conectado')
+} catch (error) {
+    console.log(error)
+}
 
-mongoose.connect(process.env.DATABASE)
 
 mongoose.Promise = global.Promise
 mongoose.connection.on('error', (error)=>{
@@ -25,7 +32,7 @@ server.use(fileupload())
 server.use(express.static(__dirname+'/public'))
 
 server.use('/', routesAd)
-server.use('/', routesAuth)
+// server.use('/', routesAuth)
 server.use('/', routesUser)
 
 server.listen(process.env.PORT, ()=>{
