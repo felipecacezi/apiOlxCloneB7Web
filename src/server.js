@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const fileupload = require('express-fileupload')
 const routesAd = require('./routes/routesAd')
-// const routesAuth = require('./routes/routesAuth')
+const routesAuth = require('./routes/routesAuth')
 const routesUser = require('./routes/routesUser')
 
 try {
@@ -32,7 +32,7 @@ server.use(fileupload())
 server.use(express.static(__dirname+'/public'))
 
 server.use('/', routesAd)
-// server.use('/', routesAuth)
+server.use('/', routesAuth)
 server.use('/', routesUser)
 
 server.listen(process.env.PORT, ()=>{
