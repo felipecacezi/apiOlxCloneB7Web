@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const UserController = require('../controllers/UserController')
 
-router.get('/states', UserController.getStates)
+const Auth = require('../middlewares/Auth')
+
+router.get('/states', Auth.private, UserController.getStates)
 
 router.get('/user/me', UserController.info)
 router.put('/user/me', UserController.editAction)

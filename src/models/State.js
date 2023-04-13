@@ -5,7 +5,14 @@ const modelSchema = new mongoose.Schema({
     name: String
 })
 
-const modelName = 'State'
+const modelName = 'states'
+
+const teste = mongoose.model('states', modelSchema)
+
+const teste2 = async ()=>await teste.find({});
+
+console.log(teste2)
+return
 
 if (mongoose.connection && mongoose.connection.models[modelName]) {
     module.exports = mongoose.connection.models[modelName]

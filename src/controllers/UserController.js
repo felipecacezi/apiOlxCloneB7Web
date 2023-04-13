@@ -1,12 +1,13 @@
-const State = require('../models/State')
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
 module.exports = {
     
     getStates: async (req, res) => {
-        let states = await State.find()
-        res.json({
-            states
-        })
+
+        const states = await prisma.states.findMany()        
+        res.json({states})
+
     },
     info: async (req, res) => {},
     editAction: async (req, res) => {},
