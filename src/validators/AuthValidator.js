@@ -16,7 +16,7 @@ module.exports = {
             normalizeEmail: true,
             errorMessage: 'E-mail inválido'
         },
-        senha: {
+        password: {
             notEmpty: true,
             isLength: {
                 options: {
