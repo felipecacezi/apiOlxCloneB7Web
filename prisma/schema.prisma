@@ -11,17 +11,18 @@ datasource db {
 }
 
 model States {
-  id   Int     @id @default(autoincrement())
-  name String?
+  id        Int    @id @default(autoincrement())
+  name  String?
 }
 
 model Users {
   id           Int     @id @default(autoincrement())
   name         String?
-  email         String  @unique
+  email        String  @unique
   passwordHash String
   token        String
   ads          Ads[]
+  stateId      Int?
 }
 
 model Categories {
