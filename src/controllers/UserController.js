@@ -67,6 +67,26 @@ module.exports = {
                 res.json({ error: true })
             }
 
+            const email = await prisma.users.findMany({
+                where: {
+                    email: data.email
+                }
+            })
+
+            if (email.length >= 1 ) {
+                res.json({ error: 'Email informado já cadastrado' })
+            }
+
+            const state = await prisma.states.findMany({
+                where: {
+                    id: data.stateId
+                }
+            })
+
+            if (state.length == 0) {
+                res.json({ error: 'O estado informado não existe' })
+            }
+
             const updateUser = await prisma.users.updateMany({
                 where: {
                     token: {
